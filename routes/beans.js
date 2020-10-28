@@ -1,11 +1,15 @@
 const { Router } = require('express')
+const path = require('path')
 const router = new Router()
 const fs = require('fs');
 const uuid = require('uuid-random');
 const { generateOrderNr, generateETA } = require('../utils/utils');
 
+const beanPath = path.join(__dirname, '../data/menu.json')
+
 router.get('/', async (req, res) => {
-    const menu = fs.createReadStream('data/menu.json');
+    console.log(beanPath)
+    const menu = fs.createReadStream(beanPath);
     menu.pipe(res);
 });
 
